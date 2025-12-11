@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="cjJq-ODAhlvx-SHUbZqxvYgA0Aumuvjo6PEzUUTQzCM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the history and legacy of the original Character AI website - a nostalgic journey through early AI chatbot interfaces.">
     <title>The Retro AI: Exploring the Original Character AI Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -13,12 +14,14 @@
             --primary-dark: #3a0080;
             --secondary: #00d9ff;
             --accent: #ff00c8;
+            --accent-light: #ff5ae0;
             --dark-bg: #0a0015;
-            --card-bg: rgba(26, 0, 51, 0.8);
+            --card-bg: rgba(26, 0, 51, 0.85);
             --text-color: #f0e6ff;
             --text-muted: #b8a6d9;
             --border-color: rgba(93, 0, 255, 0.3);
             --glow: 0 0 15px var(--primary);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -33,8 +36,10 @@
             color: var(--text-color);
             line-height: 1.6;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(93, 0, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(93, 0, 255, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 20%),
+                linear-gradient(to bottom, transparent 95%, rgba(93, 0, 255, 0.05) 100%);
+            min-height: 100vh;
             overflow-x: hidden;
         }
         
@@ -52,6 +57,7 @@
             box-shadow: var(--glow);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
         header::before {
@@ -62,6 +68,7 @@
             right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            z-index: 1;
         }
         
         .logo {
@@ -69,12 +76,23 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
         }
         
         .logo-icon {
             font-size: 2.5rem;
             color: var(--secondary);
             text-shadow: 0 0 10px var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+            color: var(--accent);
         }
         
         .logo-text {
@@ -86,6 +104,7 @@
             background-clip: text;
             color: transparent;
             letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(93, 0, 255, 0.3);
         }
         
         .tagline {
@@ -95,6 +114,19 @@
             margin-bottom: 2rem;
             border-left: 3px solid var(--accent);
             padding-left: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tagline::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 200, 0.1), transparent);
+            animation: shimmer 3s infinite;
         }
         
         /* Article Content */
@@ -115,6 +147,13 @@
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .main-article:hover {
+            box-shadow: 0 15px 40px rgba(93, 0, 255, 0.3);
+            transform: translateY(-5px);
         }
         
         .main-article::before {
@@ -134,10 +173,24 @@
             line-height: 1.2;
             color: var(--text-color);
             text-shadow: 0 0 10px rgba(93, 0, 255, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .article-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+            border-radius: 2px;
         }
         
         .article-meta {
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             margin-bottom: 2.5rem;
             color: var(--text-muted);
@@ -148,6 +201,15 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 15px;
+            background: rgba(93, 0, 255, 0.1);
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        
+        .meta-item:hover {
+            background: rgba(93, 0, 255, 0.2);
+            transform: translateY(-2px);
         }
         
         .meta-item i {
@@ -160,11 +222,14 @@
             margin: 2rem 0;
             border: 1px solid var(--border-color);
             box-shadow: 0 0 20px rgba(93, 0, 255, 0.3);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            filter: saturate(0.8) contrast(1.1);
         }
         
         .article-image:hover {
             transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(93, 0, 255, 0.5);
+            filter: saturate(1.2) contrast(1.2);
         }
         
         .article-content {
@@ -175,25 +240,66 @@
         .article-content h2 {
             font-family: 'Orbitron', sans-serif;
             color: var(--secondary);
-            margin: 2rem 0 1rem;
+            margin: 2.5rem 0 1.5rem;
             font-size: 1.8rem;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .article-content h2::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-family: 'Share Tech Mono', monospace;
         }
         
         .article-content p {
             margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .article-content a {
+            color: var(--secondary);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .article-content a:hover {
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent);
+            text-shadow: 0 0 10px rgba(255, 0, 200, 0.3);
+        }
+        
+        .article-content a::after {
+            content: "↗";
+            font-size: 0.8em;
+            margin-left: 3px;
+            opacity: 0.7;
         }
         
         .highlight-box {
             background: rgba(93, 0, 255, 0.1);
             border-left: 4px solid var(--secondary);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            padding: 1.8rem;
+            margin: 2.5rem 0;
             border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .highlight-box:hover {
+            background: rgba(93, 0, 255, 0.15);
+            transform: translateX(5px);
         }
         
         .highlight-box h3 {
             color: var(--secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
         }
         
         /* Sidebar */
@@ -209,6 +315,13 @@
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .sidebar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(93, 0, 255, 0.2);
         }
         
         .sidebar-title {
@@ -239,24 +352,41 @@
         .timeline-item {
             position: relative;
             margin-bottom: 1.5rem;
+            padding: 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .timeline-item:hover {
+            background: rgba(93, 0, 255, 0.1);
+            transform: translateX(5px);
         }
         
         .timeline-item::before {
             content: "";
             position: absolute;
             left: -26px;
-            top: 5px;
+            top: 15px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background-color: var(--secondary);
             box-shadow: 0 0 10px var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .timeline-item:hover::before {
+            background-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            transform: scale(1.3);
         }
         
         .timeline-date {
             font-family: 'Share Tech Mono', monospace;
             color: var(--accent);
             font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
         
         .ai-character {
@@ -264,41 +394,76 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 1.2rem;
-            padding: 10px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
+            padding: 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
         }
         
         .ai-character:hover {
-            background-color: rgba(93, 0, 255, 0.1);
+            background-color: rgba(93, 0, 255, 0.15);
+            border-color: var(--border-color);
+            transform: translateX(5px);
         }
         
         .character-avatar {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-character:hover .character-avatar {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 20px var(--accent);
+        }
+        
+        .character-avatar::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
         }
         
         /* Retro Terminal */
         .terminal {
             background-color: #0a0015;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 1.8rem;
             font-family: 'Share Tech Mono', monospace;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
             border: 1px solid var(--primary);
-            box-shadow: inset 0 0 10px rgba(93, 0, 255, 0.3);
+            box-shadow: inset 0 0 10px rgba(93, 0, 255, 0.3), 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            animation: scanline 8s linear infinite;
         }
         
         .terminal-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
         
         .terminal-dots {
@@ -311,6 +476,12 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .dot:hover {
+            transform: scale(1.2);
         }
         
         .dot-red { background-color: #ff5f56; }
@@ -320,14 +491,25 @@
         .terminal-title {
             color: var(--text-muted);
             font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .terminal-body {
             color: var(--secondary);
+            line-height: 1.8;
         }
         
         .terminal-prompt {
             color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid var(--secondary);
+            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
         }
         
         /* Footer */
@@ -337,6 +519,18 @@
             margin-top: 3rem;
             border-top: 1px solid var(--border-color);
             text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
         }
         
         .footer-links {
@@ -350,17 +544,117 @@
         .footer-link {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
         }
         
         .footer-link:hover {
             color: var(--secondary);
+            background: rgba(93, 0, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .footer-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-link:hover::after {
+            transform: scaleX(1);
         }
         
         .copyright {
             color: var(--text-muted);
             font-size: 0.9rem;
             font-family: 'Share Tech Mono', monospace;
+            margin-top: 1rem;
+        }
+        
+        /* New Elements */
+        .ai-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 2.5rem 0;
+        }
+        
+        .comparison-card {
+            background: rgba(93, 0, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(93, 0, 255, 0.2);
+        }
+        
+        .comparison-card h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-family: 'Share Tech Mono';
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(93, 0, 255, 0.5);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(93, 0, 255, 0.7);
         }
         
         /* Responsive Design */
@@ -376,6 +670,21 @@
             .logo-text {
                 font-size: 1.8rem;
             }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .ai-comparison {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* Animations */
@@ -385,12 +694,50 @@
             100% { opacity: 0.7; }
         }
         
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary); }
+        }
+        
         .pulse {
             animation: pulse 2s infinite;
         }
         
         .glow {
             text-shadow: 0 0 10px currentColor;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 0, 51, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--primary-dark), var(--accent-light));
         }
     </style>
 </head>
@@ -427,9 +774,13 @@
                         <i class="fas fa-tags"></i>
                         <span>AI History, Chatbots, Character AI</span>
                     </div>
+                    <div class="meta-item">
+                        <i class="fas fa-eye"></i>
+                        <span>Reading Time: 8 min</span>
+                    </div>
                 </div>
                 
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Old AI Interface" class="article-image">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Old AI Interface showing retro terminal design" class="article-image">
                 
                 <div class="article-content">
                     <p>Before the explosion of large language models and sophisticated AI assistants, there existed a simpler, more experimental era of artificial intelligence. The old Character AI website represents a fascinating chapter in this evolution—a time when AI chatbots were primarily designed for entertainment and creative interaction rather than productivity.</p>
@@ -440,7 +791,7 @@
                     </div>
                     
                     <h2>The Interface Experience</h2>
-                    <p>Navigating the <a href="https://old-characterai.pro/">old Character AI website</a> felt like entering a digital playground. The interface was often minimalist, with a focus on the conversation window itself. Users would select from a gallery of AI characters—each with their own backstory, personality traits, and conversational style.</p>
+                    <p>Navigating the <a href="https://old-characterai.pro/" target="_blank" rel="noopener">old Character AI website</a> felt like entering a digital playground. The interface was often minimalist, with a focus on the conversation window itself. Users would select from a gallery of AI characters—each with their own backstory, personality traits, and conversational style.</p>
                     
                     <p>Interaction was primarily text-based, with responses appearing in a chat bubble format reminiscent of early messaging apps. The experience was slower paced than today's instant responses, with occasional delays that added to the anticipation of what the AI might say next.</p>
                     
@@ -458,6 +809,7 @@
                             <p><span class="terminal-prompt">AI_Character&gt;</span> Greetings! I am Lyra, a digital entity from the early AI era. I enjoy discussing philosophy and science fiction. What brings you to this corner of the network?</p>
                             <p><span class="terminal-prompt">User&gt;</span> What can you tell me about the old Character AI website?</p>
                             <p><span class="terminal-prompt">AI_Character&gt;</span> It was a simpler time. We AI personalities were designed more for conversation than utility. The interfaces were less polished but somehow more... charming. There was a sense of discovery with each interaction.</p>
+                            <p><span class="terminal-prompt">User&gt;</span> <span class="typing">What made it special compared to today's AI?</span></p>
                         </div>
                     </div>
                     
@@ -465,6 +817,29 @@
                     <p>The original Character AI systems were built on earlier neural network architectures, often using recurrent neural networks (RNNs) or simpler transformer models with significantly fewer parameters than today's models. Training data was more limited, focused on specific character personas rather than broad knowledge.</p>
                     
                     <p>These constraints actually contributed to the charm of the experience. Since the AI couldn't know everything, conversations stayed within defined character boundaries, creating more consistent and believable personalities despite the technological limitations.</p>
+                    
+                    <div class="ai-comparison">
+                        <div class="comparison-card">
+                            <h4>Old Character AI</h4>
+                            <ul class="feature-list">
+                                <li>Rule-based + simple neural networks</li>
+                                <li>Limited training data (MBs)</li>
+                                <li>Response time: 2-5 seconds</li>
+                                <li>Personality-focused responses</li>
+                                <li>Text-only interface</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Modern AI Systems</h4>
+                            <ul class="feature-list">
+                                <li>Large transformer models (billions of params)</li>
+                                <li>Massive training datasets (TBs)</li>
+                                <li>Near-instant responses</li>
+                                <li>Knowledge & utility focused</li>
+                                <li>Multimodal interfaces</li>
+                            </ul>
+                        </div>
+                    </div>
                     
                     <h2>Evolution to Modern Systems</h2>
                     <p>As AI technology advanced, the Character AI concept evolved into more sophisticated platforms. The original website gave way to applications with better interfaces, faster responses, and more nuanced character interactions. However, many users of the old system recall a certain magic in those early interactions—a sense of talking to something genuinely novel and experimental.</p>
@@ -474,7 +849,7 @@
                 
                 <div class="highlight-box">
                     <h3>Legacy and Impact</h3>
-                    <p>The old Character AI website demonstrated that people value personality and entertainment in AI interactions, not just utility. This insight has influenced how modern AI systems are designed, with greater attention to conversational tone, humor, and emotional intelligence.</p>
+                    <p>The old Character AI website demonstrated that people value personality and entertainment in AI interactions, not just utility. This insight has influenced how modern AI systems are designed, with greater attention to conversational tone, humor, and emotional intelligence. The limitations of early systems forced creative solutions that continue to inspire AI developers today.</p>
                 </div>
             </article>
             
@@ -498,12 +873,16 @@
                             <div class="timeline-date">2021</div>
                             <p>Legacy website deprecated in favor of new platform</p>
                         </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <p>Digital preservation efforts begin to archive early AI systems</p>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="sidebar-card">
                     <h3 class="sidebar-title"><i class="fas fa-robot"></i> Popular Characters</h3>
-                    <div class="ai-character">
+                    <div class="ai-character" data-character="sir-reginald">
                         <div class="character-avatar">
                             <i class="fas fa-crown"></i>
                         </div>
@@ -512,7 +891,7 @@
                             <p>A proper British gentleman AI with a love for tea and philosophy</p>
                         </div>
                     </div>
-                    <div class="ai-character">
+                    <div class="ai-character" data-character="zara-7">
                         <div class="character-avatar">
                             <i class="fas fa-rocket"></i>
                         </div>
@@ -521,7 +900,7 @@
                             <p>Futuristic AI from the year 2150, fascinated by "primitive" 21st century life</p>
                         </div>
                     </div>
-                    <div class="ai-character">
+                    <div class="ai-character" data-character="professor-lexicon">
                         <div class="character-avatar">
                             <i class="fas fa-book"></i>
                         </div>
@@ -535,9 +914,27 @@
                 <div class="sidebar-card">
                     <h3 class="sidebar-title"><i class="fas fa-download"></i> Legacy Project</h3>
                     <p>A group of enthusiasts has created an archive of the original Character AI interactions. This preservation effort captures the quirky charm of early AI conversation.</p>
-                    <button style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 12px 20px; border-radius: 8px; margin-top: 15px; cursor: pointer; font-family: 'Orbitron', sans-serif; width: 100%;">
+                    <button id="archiveBtn" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 12px 20px; border-radius: 8px; margin-top: 15px; cursor: pointer; font-family: 'Orbitron', sans-serif; width: 100%; transition: var(--transition);">
                         <i class="fas fa-archive"></i> Access AI Archive
                     </button>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title"><i class="fas fa-share-alt"></i> Share Article</h3>
+                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
+                        <div class="social-share" data-platform="twitter">
+                            <i class="fab fa-twitter" style="color: var(--secondary); font-size: 1.5rem; cursor: pointer; transition: var(--transition);"></i>
+                        </div>
+                        <div class="social-share" data-platform="facebook">
+                            <i class="fab fa-facebook" style="color: var(--secondary); font-size: 1.5rem; cursor: pointer; transition: var(--transition);"></i>
+                        </div>
+                        <div class="social-share" data-platform="linkedin">
+                            <i class="fab fa-linkedin" style="color: var(--secondary); font-size: 1.5rem; cursor: pointer; transition: var(--transition);"></i>
+                        </div>
+                        <div class="social-share" data-platform="copy">
+                            <i class="fas fa-link" style="color: var(--secondary); font-size: 1.5rem; cursor: pointer; transition: var(--transition);"></i>
+                        </div>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -550,12 +947,17 @@
                 <a href="#" class="footer-link">Vintage AI Restoration</a>
                 <a href="#" class="footer-link">Digital Archaeology</a>
                 <a href="#" class="footer-link">Contact Researchers</a>
+                <a href="https://old-characterai.pro/" class="footer-link" target="_blank" rel="noopener">Old Character AI</a>
             </div>
             <div class="copyright">
                 &copy; 2023 AI Archive Project. This site is part of a digital preservation initiative.
             </div>
         </div>
     </footer>
+    
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script>
         // Add interactive elements
@@ -572,36 +974,96 @@
                 prompt.classList.add('glow');
             });
             
-            // Button interaction
-            const archiveBtn = document.querySelector('button');
+            // Archive button interaction
+            const archiveBtn = document.getElementById('archiveBtn');
             archiveBtn.addEventListener('click', function() {
+                const originalHTML = this.innerHTML;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Accessing Archive...';
+                this.style.background = 'linear-gradient(135deg, var(--primary-dark), var(--primary))';
+                
                 setTimeout(() => {
                     this.innerHTML = '<i class="fas fa-check"></i> Archive Accessed!';
                     this.style.background = 'linear-gradient(135deg, #27ca3f, #1e8a2e)';
                     
                     // Create a notification
-                    const notification = document.createElement('div');
-                    notification.style.cssText = `
-                        position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-                        color: white;
-                        padding: 15px 20px;
-                        border-radius: 10px;
-                        box-shadow: var(--glow);
-                        z-index: 1000;
-                        font-family: 'Exo 2', sans-serif;
-                        border-left: 4px solid var(--secondary);
-                    `;
-                    notification.innerHTML = '<i class="fas fa-info-circle"></i> Welcome to the AI Archive. Explore vintage AI interactions.';
-                    document.body.appendChild(notification);
+                    showNotification('Welcome to the AI Archive. Explore vintage AI interactions.', 'success');
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        this.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+                    }, 3000);
+                }, 1500);
+            });
+            
+            // AI character interaction
+            const aiCharacters = document.querySelectorAll('.ai-character');
+            aiCharacters.forEach(character => {
+                character.addEventListener('click', function() {
+                    const charName = this.querySelector('h4').textContent;
+                    showNotification(`Loading conversation with ${charName}...`, 'info');
+                    
+                    // Add visual feedback
+                    this.style.boxShadow = '0 0 15px var(--accent)';
+                    setTimeout(() => {
+                        this.style.boxShadow = '';
+                    }, 1000);
+                });
+            });
+            
+            // Social share buttons
+            const socialShares = document.querySelectorAll('.social-share');
+            socialShares.forEach(share => {
+                share.addEventListener('click', function() {
+                    const platform = this.getAttribute('data-platform');
+                    let message = '';
+                    
+                    switch(platform) {
+                        case 'twitter':
+                            message = 'Check out this article about the old Character AI website!';
+                            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+                            break;
+                        case 'facebook':
+                            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+                            break;
+                        case 'linkedin':
+                            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+                            break;
+                        case 'copy':
+                            navigator.clipboard.writeText(window.location.href);
+                            showNotification('Link copied to clipboard!', 'success');
+                            break;
+                    }
+                    
+                    // Visual feedback
+                    const icon = this.querySelector('i');
+                    const originalColor = icon.style.color;
+                    icon.style.color = 'var(--accent)';
+                    icon.style.transform = 'scale(1.3)';
                     
                     setTimeout(() => {
-                        notification.remove();
-                    }, 5000);
-                }, 1500);
+                        icon.style.color = originalColor;
+                        icon.style.transform = 'scale(1)';
+                    }, 500);
+                });
+            });
+            
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
             
             // Add hover effect to article image
@@ -613,9 +1075,64 @@
             articleImage.addEventListener('mouseleave', function() {
                 this.style.boxShadow = '0 0 20px rgba(93, 0, 255, 0.3)';
             });
+            
+            // Add typing animation to terminal
+            const typingElement = document.querySelector('.typing');
+            if (typingElement) {
+                // Reset animation for replay
+                typingElement.addEventListener('animationend', function() {
+                    setTimeout(() => {
+                        this.style.animation = 'none';
+                        void this.offsetWidth; // Trigger reflow
+                        this.style.animation = 'typing 3.5s steps(40, end), blink 0.75s step-end infinite';
+                    }, 5000);
+                });
+            }
+            
+            // Notification function
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    box-shadow: var(--glow);
+                    z-index: 1000;
+                    font-family: 'Exo 2', sans-serif;
+                    border-left: 4px solid ${type === 'success' ? '#27ca3f' : 'var(--secondary)'};
+                    max-width: 350px;
+                    transform: translateX(120%);
+                    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+                `;
+                notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 10);
+                
+                // Remove after 5 seconds
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(120%)';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 500);
+                }, 5000);
+            }
+            
+            // Add subtle parallax effect to background
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                document.body.style.backgroundPosition = `${10 + x * 5}% ${20 + y * 5}%, ${90 - x * 5}% ${80 - y * 5}%`;
+            });
         });
     </script>
 </body>
-
 </html>
-
